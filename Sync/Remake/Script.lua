@@ -1175,7 +1175,7 @@ end)
 
 local Library = 
 loadstring(Game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
-local Window_1 = Library:NewWindow("Frogge | Main")
+local Window_1 = Library:NewWindow("ESP GUI")
 
 local Tab1 = Window_1:NewSection("ESP")
 
