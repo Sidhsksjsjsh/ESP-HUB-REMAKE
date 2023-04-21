@@ -1173,53 +1173,13 @@ end)
 
 -- Objects
 
-local GUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/aaaa"))()
+local Library = 
+loadstring(Game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
+local Window_1 = Library:NewWindow("Frogge | Main")
 
-local UI = GUI:CreateWindow("Injector Master X - Esp Only","Root-mode: non-root")
+local Tab1 = Window_1:NewSection("ESP")
 
-local Home = UI:addPage("Home",1,true,6)
-
-Home:addLabel("Esp - player","Lol this funny")
-
-local Ani = UI:addPage("Animation",1,true,6)
-
-Ani:addLabel("use this animation","if u dont have robux!")
-
-local Char = UI:addPage("Character editor",1,true,6)
-
-Char:addLabel("Character editor","💀")
-
-Char:addSlider("speed",16,100,function(value)
-   game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = value
-end)
-
-Char:addSlider("speed",50,150,function(value)
-   game.Players.LocalPlayer.Character.Humanoid.JumpPower = value
-end)
-
-Char:addButton("speedboost",function()
-local hb = game:GetService("RunService").Heartbeat
-
-tpwalking = true
-local chr = game.Players.LocalPlayer.Character
-local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
-while tpwalking and hb:Wait() and chr and hum and hum.Parent do
-if hum.MoveDirection.Magnitude > 0 then
-chr:TranslateBy(hum.MoveDirection)
-end
-end
-
-game.Players.LocalPlayer.Character.Animate.Disabled = true
-local Char = game.Players.LocalPlayer.Character
-local Hum = Char:FindFirstChildOfClass("Humanoid") or Char:FindFirstChildOfClass("AnimationController")
-
-for i,v in next, Hum:GetPlayingAnimationTracks() do
-v:AdjustSpeed(0)
-end
-wait()
-end)
-
-Home:addToggle("esp",function(boolean)
+Tab1:CreateToggle("Esp", function(boolean)
 Vexana.ESPEnabled = not Vexana.ESPEnabled
 if Vexana.ESPEnabled then
 for _, v in next, Plrs:GetPlayers() do
@@ -1253,7 +1213,7 @@ ItemESP:ClearAllChildren()
 end
 end)
 
-Home:addToggle("Visual X-Ray",function(boolean)
+Tab1:CreateToggle("Visual X-Ray", function(boolean)
 Vexana.CHAMSEnabled = not Vexana.CHAMSEnabled
 if Vexana.CHAMSEnabled then
 for _, v in next, Plrs:GetPlayers() do
@@ -1287,7 +1247,7 @@ ItemChams:ClearAllChildren()
 end
 end)
 
-Home:addToggle("Tracers",function(boolean)
+Tab1:CreateToggle("Tracers", function(boolean)
 Vexana.TracersEnabled = not Vexana.TracersEnabled
 if Vexana.TracersEnabled then
 for _, v in next, Plrs:GetPlayers() do
@@ -1325,7 +1285,7 @@ end
 end
 end)
 
-Home:addToggle("Debug (enemy nearest)",function(boolean)
+Tab1:CreateToggle("Debug", function(boolean)
 Vexana.DebugInfo = not Vexana.DebugInfo
 DebugMenu["Main"].Visible = Vexana.DebugInfo
 if Vexana.DebugInfo then
@@ -1335,7 +1295,7 @@ else
 end
 end)
 
-Home:addToggle("Visual X-Ray (map version)",function(boolean)
+Tab1:CreateToggle("Visual Map X-Ray", function(boolean)
 Vexana.OutlinesEnabled = not Vexana.OutlinesEnabled
 if Vexana.OutlinesEnabled then
 for _, v in next, workspace:GetDescendants() do
@@ -1369,7 +1329,7 @@ end
 end
 end)
 
-Home:addToggle("Fullbright",function(boolean)
+Tab1:CreateToggle("Fullbright", function(boolean)
 Vexana.FullbrightEnabled = not Vexana.FullbrightEnabled
 if Vexana.FullbrightEnabled then
 if Vexana.LightingEvent == nil then
@@ -1382,7 +1342,7 @@ Light.ColorShift_Top = Vexana.ColorShiftTopBackup
 end
 end)
 
-Home:addToggle("Crosshair",function(boolean)
+Tab1:CreateToggle("crosshair", function(boolean)
 Vexana.CrosshairEnabled = not Vexana.CrosshairEnabled
 if Vexana.CrosshairEnabled then
 local g = Instance.new("ScreenGui", CoreGui)
@@ -1416,23 +1376,6 @@ end
             
             print('?')
 end
-end)
-
-Home:addToggle("error",function(boolean)
-if not (game.PlaceId == 292439477 or game.PlaceId == 606849621) then
-Vexana.AimbotEnabled = not Vexana.AimbotEnabled
-if Vexana.AimbotEnabled then
-print('?')
-else
-print('?')
-end
-else
-local hint = Instance.new("Hint", CoreGui)
-hint.Text = "This game prevents camera manipulation!"
-wait(5)
-hint:Destroy()
-end
-wait()
 end)
 
 Run:BindToRenderStep("UpdateESP", Enum.RenderPriority.Character.Value, function()
