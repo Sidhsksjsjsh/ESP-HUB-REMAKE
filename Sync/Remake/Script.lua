@@ -1458,20 +1458,3 @@ end
 wait()
 end)
 
-local Players = game.Players
-Players.PlayerAdded:Connect(function(player)
-JoinSection:CreateButton(player.Name, function()
-   setclipboard(''..player.Name..'')
-   set()
-end)
-wait()
-end)
-
-local Players = game.Players
-Players.PlayerRemoving:Connect(function(player)
-LeaveSection:CreateButton(player.Name, function()
-   setclipboard(''..player.Name..'')
-   set()
-end)
-wait()
-end)
